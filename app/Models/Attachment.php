@@ -9,6 +9,10 @@ class Attachment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'page_id', 'filePath', 'space_id', 'user_id'
+    ];
+
     public function page()
     {
         return $this->belongsTo(Page::class);

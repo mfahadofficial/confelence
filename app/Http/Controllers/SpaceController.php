@@ -40,10 +40,7 @@ class SpaceController extends Controller
         ]);
         $input = $request->all();
         $input['user_id'] = auth()->id();
-        // dd($input);
         Space::create($input);
-    
-        // Space::create($request->all());
      
         return back()->with('success','Space created successfully.');
     }
@@ -51,7 +48,12 @@ class SpaceController extends Controller
 
     public function show($id)
     {
-        //
+        $userId = auth()->id();
+        $space = Space::with('pages')->where('user_id', '=', $userId)->find($id);
+        $pages = $space->pages;
+
+        return view('space.show', compact('space', 'pages'));
+
     }
 
 
@@ -70,5 +72,54 @@ class SpaceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function allSpaces()
+    {
+        $userId = auth()->id();
+        $spaces = Space::with('user')->where('user_id', '=', $userId)->get();
+        $categories = Category::all();
+        // foreach($spaces as $space){
+        //     dd($space->user->name);
+        // }
+        
+        return view('space/allSpaces', compact('spaces', 'categories'));
+    }
+
+    public function siteSpaces()
+    {
+        $userId = auth()->id();
+        $spaces = Space::with('user')->where('user_id', '=', $userId)->get();
+        $categories = Category::all();
+        // foreach($spaces as $space){
+        //     dd($space->user->name);
+        // }
+        
+        return view('space/siteSpaces', compact('spaces', 'categories'));
+    }
+
+    public function personalSpaces()
+    {
+        $userId = auth()->id();
+        $spaces = Space::with('user')->where('user_id', '=', $userId)->get();
+        $categories = Category::all();
+        // foreach($spaces as $space){
+        //     dd($space->user->name);
+        // }
+        
+        return view('space/personalSpaces', compact('spaces', 'categories'));
+    }
+
+    public function archivedSpaces()
+    {
+        $userId = auth()->id();
+        $spaces = Space::with('user')->where('user_id', '=', $userId)->get();
+        $categories = Category::all();
+        // foreach($spaces as $space){
+        //     dd($space->user->name);
+        // }
+        
+        return view('space/archivedSpaces', compact('spaces', 'categories'));
     }
 }

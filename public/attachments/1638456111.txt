@@ -1,0 +1,11 @@
+File Changes
+ bootstrap\dist\cssAdminLTE.min.css
+ Login.php
+ PrivateDashboard.php
+ MainDashboard.php
+ Main.php
+ images
+
+New Folder Created
+ assets
+ bootstrap\dist\cssAdminLTE-2.min.css

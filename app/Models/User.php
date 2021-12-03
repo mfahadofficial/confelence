@@ -35,25 +35,32 @@ class User extends Authenticatable
         return $this->hasMany(Space::class);
     }
 
+
+    public function pages()
+    {
+        // dd('test');
+        return $this->hasMany(Page::class);
+    }
+
     public function roles()
     {
         return $this->hasMany(Role::class, 'role_user');
     }
 
-    public function spaceRoles(){
-        return $this->belongsToMany(Role::class, 'space_permissions', 'role_id')->withPivot('space_id');
-        }
+    // public function spaceRoles(){
+    //     return $this->belongsToMany(Role::class, 'space_permissions', 'role_id')->withPivot('space_id');
+    //     }
         
-        // public function spaces(){
-        // return $this->belongsToMany(Space::class,'space_permissions')->withPivot('role_id');
-        // }
+    //     // public function spaces(){
+    //     // return $this->belongsToMany(Space::class,'space_permissions')->withPivot('role_id');
+    //     // }
 
 
-        public function pages(){
-            return $this->belongsToMany(Page::class,'page_permissions')->withPivot('role_id');
-            }
+    //     public function pages(){
+    //         return $this->belongsToMany(Page::class,'page_permissions')->withPivot('role_id');
+    //         }
             
-            public function pageRoles(){
-                return $this->belongsToMany(Role::class, 'page_permissions', 'role_id')->withPivot('page_id');
-                }
+    //         public function pageRoles(){
+    //             return $this->belongsToMany(Role::class, 'page_permissions', 'role_id')->withPivot('page_id');
+    //             }
 }

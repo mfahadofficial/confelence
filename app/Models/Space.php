@@ -23,6 +23,11 @@ class Space extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
+    }
+
 
     public function spaceUsers(){
         return $this->belongsToMany(User::class, 'space_permissions', 'user_id')->withPivot('role_id');

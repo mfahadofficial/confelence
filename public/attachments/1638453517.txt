@@ -1,0 +1,1 @@
+add new column to migration: rails generate migration add_iban_to_addresses iban:string
